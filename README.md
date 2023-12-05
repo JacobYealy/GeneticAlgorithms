@@ -1,8 +1,8 @@
-# Genetic Algorithms
+# Genetic Algorithms: Teacher Satisfaction Model
 
 ## Instructions (Delete later)
 
-We will work with some of the model described in the attached thesis. I have (tried) to summarize the data
+We will work with some models described in the attached thesis. I have (tried) to summarize the data
 into usable digital form in 2 spreadsheets. One contains the simulated data that was used for most of the 
 models and experiments described in the paper. The other contains the real world data gathered for the 
 Math & Stats department at Cal Poly Pomona. 
@@ -11,7 +11,12 @@ The goal of this project is to actually implement
 and run a Genetic Algorithm and compare our results to the published results from the paper.
 
 ## Conditions
+
+### Requirements
 Make sure to run "pip install -r requirements.txt"
+
+### Branching
+Make a branch for each component you work on
 
 
 ## Functions
