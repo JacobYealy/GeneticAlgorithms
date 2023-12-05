@@ -1,1 +1,6 @@
-# data preprocessing
+import pandas as pd
+
+
+# Teacher sat logic
+
+

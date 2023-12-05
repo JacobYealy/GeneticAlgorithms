@@ -10,6 +10,9 @@ Math & Stats department at Cal Poly Pomona.
 The goal of this project is to actually implement
 and run a Genetic Algorithm and compare our results to the published results from the paper.
 
+## Conditions
+Make sure to run "pip install -r requirements.txt"
+
 
 ## Functions
 
