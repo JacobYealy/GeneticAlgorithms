@@ -1,39 +1,46 @@
-# Genetic Algorithms: Teacher Satisfaction Model
+# Genetic Algorithms: Teacher Preference Model
 
-## Instructions (Delete later)
+## Goal
+The goal of Model 3 is to minimize the difference 
+in the number of course-sections assigned to each teacher, ideally balancing their workloads.
 
-We will work with some models described in the attached thesis. I have (tried) to summarize the data
-into usable digital form in 2 spreadsheets. One contains the simulated data that was used for most of the 
-models and experiments described in the paper. The other contains the real world data gathered for the 
-Math & Stats department at Cal Poly Pomona. 
+## Process
+Define Decision Variables:
 
-The goal of this project is to actually implement
-and run a Genetic Algorithm and compare our results to the published results from the paper.
+xijkt: A binary variable that indicates whether course-section i is assigned to classroom j at time module k with teacher t.
+Qt: A real number that measures the difference between the number of course-sections taught by teacher t and the ideal number they should teach.
 
-## Conditions
+Objective Function:
+The objective is to minimize Qt across all teachers t, ensuring an even distribution of course-sections among teachers.
+
+Constraints:
+Use the same constraints from previous models (2.10) - (2.14) and (2.17) - (2.30), except those specific to Model 2.
+Additional constraints for Qt (2.31) and (2.32) ensure that Qt bounds the absolute value of the difference between the actual number of course-sections a teacher teaches and the ideal number.
+
+Implementation:
+Create a data structure or class to represent the schedule and include methods for initializing and evaluating the fitness based on the objective function.
+Implement the genetic algorithm operators such as selection, crossover, and mutation to work with the scheduling representation.
+Ensure the algorithm respects the defined constraints during the initialization and evolution of the population.
+Define a function or method to calculate Qt for each teacher based on the current schedule representation and include it in the fitness evaluation.
+
+Initialization:
+Initialize the population with feasible schedules respecting the constraints and ensuring a diverse representation of potential solutions.
+
+Evolution Loop:
+Within the genetic algorithm's main loop, select the best-fitting schedules as parents for producing offspring.
+Apply crossover and mutation operators to generate a new population of schedules.
+Evaluate the new population and select the next generation of schedules based on their fitness scores.
+
+Result Analysis:
+After the algorithm converges or reaches a stopping condition, analyze the best schedules to ensure they meet the objective and constraints.
+Possibly implement additional analysis to compare the genetic algorithm's results with heuristic or other non-optimal methods mentioned in the thesis.
+
+Code Organization:
+Update model.py to include the classes and methods for the genetic algorithm and the schedule representation.
+Use utils.py for any additional helper functions needed during the implementation.
 
 ### Requirements
 Make sure to run "pip install -r requirements.txt"
 
 ### Branching
 Make a branch for each component you work on
-
-
-## Functions
-
-### Objective Function
-Model 5's objective function is designed to maximize teacher satisfaction with their assigned course-sections.
-
-### Teacher satisfaction Matrix
-It's a matrix where each row represents a teacher and each column represents a course-section. 
-The satisfaction is rated on a scale of 0 to 5, with 0 being the most desired outcome and 5 the least.
-
-### Constraints
-The model utilizes the same decision variables as the Basic Teacher Model and 
-employs constraints from the Basic Teacher Model (2.10 - 2.14 and 2.17 - 2.19) and the 
-Teacher Preference Model (2.20 - 2.28). However, constraints (2.29 and 2.30) are not considered in this model, 
-as preferences are now accounted for in the objective function on a course-section-by-course-section basis, 
-rather than just pure versus applied preferences.
-
-### Minimization of objective function
-The objective is to minimize the overall dissatisfaction.

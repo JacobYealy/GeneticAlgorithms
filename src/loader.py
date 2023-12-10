@@ -29,7 +29,7 @@ def load_simulated_data():
     DataFrame: A pandas DataFrame containing the simulated data.
     """
     # Update the file path to the correct location
-    return load_excel_data('../excels/Simulated Data.xlsx')
+    return load_excel_data('../data/Simulated Data.xlsx')
 
 
 def load_real_world_data():
@@ -40,4 +40,4 @@ def load_real_world_data():
     DataFrame: A pandas DataFrame containing the real-world data.
     """
     # Update the file path to the correct location
-    return load_excel_data('../excels/CPP Real World Data.xlsx')
+    return load_excel_data('../data/CPP Real World Data.xlsx')
