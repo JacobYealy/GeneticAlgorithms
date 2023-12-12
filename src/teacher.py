@@ -9,6 +9,24 @@ class Teacher:
         # course_prefs is a list or dictionary mapping course catalog numbers to preference scores
         self.course_prefs = course_prefs
 
+    def create_teachers_from_dataframe(df):
+        teachers = []
+        for index, row in df.iterrows():
+            id = row['Teacher ID']
+            min_sections = row['Min Sections']
+            max_sections = row['Max Sections']
+            board_pref = row['Board Pref 0-none,     1-white,    2-chalk']
+            time_pref = row['Time Pref  0-none      1-morn     2-aft          3-eve']
+            days_pref = row['Days of Week         0-no pref   1-MWF      2-TR']
+
+            # Extract course preferences
+            course_prefs = {str(i): row[str(i)] for i in range(1, 30)}  # Adjust range based on the number of courses
+
+            teacher = Teacher(id, min_sections, max_sections, board_pref, time_pref, days_pref, course_prefs)
+            teachers.append(teacher)
+
+        return teachers
+
     def get_preference_score(self, schedule):
         # Initialize the score
         preference_score = 0
