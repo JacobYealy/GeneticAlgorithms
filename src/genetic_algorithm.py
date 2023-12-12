@@ -1,3 +1,4 @@
+import numpy as np
 from schedule import Schedule
 from utils import timing
 

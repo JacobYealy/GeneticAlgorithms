@@ -4,10 +4,10 @@ from schedule import Schedule
 import pandas as pd
 
 def load_teachers_from_excel(file_path):
+        # Probably want to change this out with teacher functions
     df = pd.read_excel(file_path)
     teachers = []
     for index, row in df.iterrows():
-        # Assuming each row in the DataFrame corresponds to a teacher and the columns match the teacher's attributes
         teachers.append(Teacher(
             id=row['Teacher ID'],
             min_sections=row['Min Sections'],
@@ -15,15 +15,14 @@ def load_teachers_from_excel(file_path):
             board_pref=row['Board Pref'],
             time_pref=row['Time Pref'],
             days_pref=row['Days of Week'],
-            section_prefs={i: row[i] for i in range(1, 30)}  # Adjust the range based on your data
+            section_prefs={i: row[i] for i in range(1, 30)}
         ))
     return teachers
 
 def main():
-    teachers = load_teachers_from_excel('teachers_preferences.xlsx')  # Use your actual file path
+    teachers = load_teachers_from_excel('../data/Simulated Data.xlsx')
 
-    # Initialize other parameters with example data
-    # These would also be loaded from your data files or defined based on your problem's needs
+
     course_sections = [...]  # Replace with actual course section identifiers
     classrooms = [...]  # Replace with actual classroom identifiers
     time_modules = [...]  # Replace with actual time module identifiers
