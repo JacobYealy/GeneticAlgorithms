@@ -42,15 +42,22 @@ class GeneticAlgorithm:
         return children
 
     def create_child(self, parent1, parent2):
-        # Implement the logic to mix schedules from two parents to create a child
-        pass
+        # One-point crossover
+        crossover_point = np.random.randint(0, len(parent1.course_sections))
+        child_schedule_matrix = np.zeros_like(parent1.schedule_matrix)
 
-    def mutate(self, schedules):
-        # Mutation logic to introduce variations
-        for schedule in schedules:
-            if np.random.rand() < self.mutation_rate:
-                self.mutate_schedule(schedule)
+        child_schedule_matrix[:crossover_point, :] = parent1.schedule_matrix[:crossover_point, :]
+        child_schedule_matrix[crossover_point:, :] = parent2.schedule_matrix[crossover_point:, :]
+
+        child = Schedule(parent1.teachers, parent1.course_sections, parent1.classrooms, parent1.time_modules)
+        child.schedule_matrix = child_schedule_matrix
+        return child
 
     def mutate_schedule(self, schedule):
-        # Implement the logic to mutate a given schedule
-        pass
+        num_mutations = np.random.randint(1, len(schedule.course_sections))
+        for _ in range(num_mutations):
+            teacher_idx = np.random.randint(0, len(schedule.teachers))
+            section_idx = np.random.randint(0, len(schedule.course_sections))
+            # Mutate logic (?)
+            schedule.schedule_matrix[teacher_idx, section_idx] = 1 - schedule.schedule_matrix[teacher_idx, section_idx]
+

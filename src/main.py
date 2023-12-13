@@ -4,7 +4,6 @@ from schedule import Schedule
 import pandas as pd
 
 def load_teachers_from_excel(file_path):
-        # Probably want to change this out with teacher functions
     df = pd.read_excel(file_path)
     teachers = []
     for index, row in df.iterrows():
@@ -22,10 +21,10 @@ def load_teachers_from_excel(file_path):
 def main():
     teachers = load_teachers_from_excel('../data/Simulated Data.xlsx')
 
-
+    # Load or define course sections, classrooms, and time modules
     course_sections = [...]  # Replace with actual course section identifiers
-    classrooms = [...]  # Replace with actual classroom identifiers
-    time_modules = [...]  # Replace with actual time module identifiers
+    classrooms = [...]       # Replace with actual classroom identifiers
+    time_modules = [...]     # Replace with actual time module identifiers
 
     ga = GeneticAlgorithm(
         population_size=100,
