@@ -2,17 +2,19 @@ from GeneticAlgorithms.src import schedule
 
 
 class Teacher:
-    def __init__(self, id, min_sections, max_sections, board_pref, time_pref, days_pref, course_prefs):
+    def __init__(self, id, min_sections, max_sections, board_pref, time_pref, days_pref, course_prefs, time_prefs=None, day_prefs=None):
         self.id = id
         self.min_sections = min_sections
         self.max_sections = max_sections
         self.board_pref = board_pref
         self.time_pref = time_pref
         self.days_pref = days_pref
-        # course_prefs is a list or dictionary mapping course catalog numbers to preference scores
         self.course_prefs = course_prefs
+        self.time_prefs = time_prefs if time_prefs is not None else {}
+        self.day_prefs = day_prefs if day_prefs is not None else {}
 
-    def create_teachers_from_dataframe(df):
+    @staticmethod
+    def create_teachers_from_dataframe(df, time_df=None, day_df=None):
         teachers = []
         for index, row in df.iterrows():
             id = row['Teacher ID']
@@ -23,12 +25,19 @@ class Teacher:
             days_pref = row['Days of Week 0-no pref 1-MWF 2-TR']
 
             # Extract course preferences
-            course_prefs = {str(i): row[str(i)] for i in range(1, 30)}  # Adjust range based on the number of courses
+            course_prefs = {str(i): row[str(i)] for i in range(1, 30)}  # Adjust range based on the number of courses (30 from file)
 
-            teacher = Teacher(id, min_sections, max_sections, board_pref, time_pref, days_pref, course_prefs)
+            # Extract time preferences if provided
+            time_prefs = time_df.loc[time_df['Teacher ID'] == id].to_dict('records')[0] if time_df is not None else None
+
+            # Extract day preferences if provided
+            day_prefs = day_df.loc[day_df['Teacher ID'] == id].to_dict('records')[0] if day_df is not None else None
+
+            teacher = Teacher(id, min_sections, max_sections, board_pref, time_pref, days_pref, course_prefs, time_prefs, day_prefs)
             teachers.append(teacher)
 
         return teachers
+
 
     def get_preference_score(self, course_section):
         # Initialize the score

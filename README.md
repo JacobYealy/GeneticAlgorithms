@@ -14,7 +14,7 @@ Objective Function:
 The objective is to minimize Qt across all teachers t, ensuring an even distribution of course-sections among teachers.
 
 Constraints:
-Use the same constraints from previous models (2.10) - (2.14) and (2.17) - (2.30), except those specific to Model 2.
+Use the same constraints from previous models except the ones specific to Model 2.
 Additional constraints for Qt (2.31) and (2.32) ensure that Qt bounds the absolute value of the difference between the actual number of course-sections a teacher teaches and the ideal number.
 
 Implementation:
@@ -33,7 +33,7 @@ Evaluate the new population and select the next generation of schedules based on
 
 Result Analysis:
 After the algorithm converges or reaches a stopping condition, analyze the best schedules to ensure they meet the objective and constraints.
-Possibly implement additional analysis to compare the genetic algorithm's results with heuristic or other non-optimal methods mentioned in the thesis.
+Possibly implement additional analysis to compare the genetic algorithm's results with heuristic or other non-optimal methods from the paper.
 
 Code Organization:
 Update model.py to include the classes and methods for the genetic algorithm and the schedule representation.
